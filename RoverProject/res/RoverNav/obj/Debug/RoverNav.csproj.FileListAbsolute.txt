@@ -1,0 +1,48 @@
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.csproj.AssemblyReference.cache
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.csproj.SuggestedBindingRedirects.cache
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\MainWindow.g.cs
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\App.g.cs
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav_MarkupCompile.cache
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav_MarkupCompile.lref
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\bin\Debug\RoverNav.exe.config
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\bin\Debug\RoverNav.exe
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\bin\Debug\RoverNav.pdb
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\MainWindow.baml
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.g.resources
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.Properties.Resources.resources
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.csproj.GenerateResource.cache
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.csproj.CoreCompileInputs.cache
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.exe
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.pdb
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\bin\Debug\RoverNav.exe.config
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\bin\Debug\RoverNav.exe
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\bin\Debug\RoverNav.pdb
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.csproj.AssemblyReference.cache
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.csproj.SuggestedBindingRedirects.cache
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\MainWindow.g.cs
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\App.g.cs
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav_MarkupCompile.cache
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav_MarkupCompile.lref
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\MainWindow.baml
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.g.resources
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.Properties.Resources.resources
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.csproj.GenerateResource.cache
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.csproj.CoreCompileInputs.cache
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.exe
+C:\Users\Jonathan Forhan\OneDrive\Code Share\C# Share\RoverNav\obj\Debug\RoverNav.pdb
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\bin\Debug\RoverNav.exe.config
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\bin\Debug\RoverNav.exe
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\bin\Debug\RoverNav.pdb
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\obj\Debug\RoverNav.csproj.AssemblyReference.cache
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\obj\Debug\RoverNav.csproj.SuggestedBindingRedirects.cache
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\obj\Debug\MainWindow.g.cs
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\obj\Debug\App.g.cs
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\obj\Debug\RoverNav_MarkupCompile.cache
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\obj\Debug\RoverNav_MarkupCompile.lref
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\obj\Debug\MainWindow.baml
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\obj\Debug\RoverNav.g.resources
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\obj\Debug\RoverNav.Properties.Resources.resources
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\obj\Debug\RoverNav.csproj.GenerateResource.cache
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\obj\Debug\RoverNav.csproj.CoreCompileInputs.cache
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\obj\Debug\RoverNav.exe
+C:\Users\jonat\OneDrive\Code Share\C# Share\RoverProject\res\RoverNav\obj\Debug\RoverNav.pdb
