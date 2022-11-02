@@ -4,6 +4,7 @@
 #include<Servo.h>
 #include<IRremote.h>
 #include<Arduino.h>
+#include<EEPROM.h>
 
 class Rover
 {
@@ -14,6 +15,7 @@ private:
 	void Cruise(int distance);
 	void DataCheck();
 	void ExecuteNav();
+	void retreiveData();
 
 	char* data_arr;
 	int* packet_size = new int;

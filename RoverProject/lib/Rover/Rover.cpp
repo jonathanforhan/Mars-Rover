@@ -38,11 +38,6 @@ void Rover::Init()
     analogWrite(L_Throttle, 0);
 
     this->IRinput->enableIRIn();
-
-    for (int i = 0; i < *packet_size; i++)
-    {
-        data_arr[i] = 0;
-    }
 }
 
 void Rover::Turn(int degree)
@@ -65,6 +60,18 @@ void Rover::Turn(int degree)
     ServoCmd(90);
 }
 
+void Rover::retreiveData()
+{
+    for (int i = 0; i < *packet_size; i++)
+    {
+        data_arr[i] = EEPROM.read(i);
+    }
+    if (data_arr[*packet_size - 1] == 5)
+    {
+        starter = true;
+    }
+}
+
 void Rover::Cruise(int distance)
 {
     analogWrite(R_Throttle, 255);
@@ -77,16 +84,12 @@ void Rover::Cruise(int distance)
 
 void Rover::DataCheck()
 {
-    if (Serial.available())
+    if (Serial.available() && starter == false)
     {
         String data = Serial.readString();
         for (int i = 0; i < *packet_size; i++)
         {
-            data_arr[i] = data.charAt(i);
-        }
-        if (data_arr[*packet_size - 1] == 5)
-        {
-            starter = true;
+            EEPROM.write(i, data.charAt(i));
         }
     }
     if (IRinput->decode(&results) && starter)
@@ -102,6 +105,8 @@ void Rover::DataCheck()
 
 void Rover::ExecuteNav()
 {
+    retreiveData();
+
     if (starter && IRon)
     {
         for (int i = 0; i < *packet_size - 1; i += 2)
@@ -112,6 +117,7 @@ void Rover::ExecuteNav()
         analogWrite(R_Throttle, 0);
         analogWrite(L_Throttle, 0);
         data_arr[*packet_size - 1] = 0;
+        EEPROM.write(*packet_size - 1, 0);
         starter = false;
         IRon = false;
     }
