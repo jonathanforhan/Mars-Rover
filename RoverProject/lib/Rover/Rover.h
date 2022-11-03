@@ -9,7 +9,7 @@
 class Rover
 {
 private:
-	char* nav_data;
+	uint8_t* nav_data;
 	int packet_size;
 	bool IRon = false;
 

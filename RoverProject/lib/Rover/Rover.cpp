@@ -71,7 +71,7 @@ void Rover::ReadEEPROM()
 
 void Rover::CheckIR()
 {
-	if (IRinput->decode(&results) && (uint8_t)nav_data[packet_size - 1] == 5)
+	if (IRinput->decode(&results) && nav_data[packet_size - 1] == 5)
 	{
 		this->IRon = true;
 	}
@@ -83,12 +83,12 @@ void Rover::CheckIR()
 
 void Rover::ExecuteNav()
 {
-	if (IRon == true && (uint8_t)nav_data[packet_size - 1] == 5)
+	if (IRon == true && nav_data[packet_size - 1] == 5)
 	{
 		for (int i = 0; i < packet_size - 1; i += 2)
 		{
-			Turn((uint8_t)nav_data[i]);
-			Cruise((uint8_t)nav_data[i + 1]);
+			Turn(nav_data[i]);
+			Cruise(nav_data[i + 1]);
 		}
 		analogWrite(R_Throttle, 0);
 		analogWrite(L_Throttle, 0);
@@ -100,7 +100,7 @@ void Rover::ExecuteNav()
 
 Rover::Rover(const int p_size)
 {
-	nav_data = new char[p_size];
+	nav_data = new uint8_t[p_size];
 	this->packet_size = p_size;
 
 	Init();
