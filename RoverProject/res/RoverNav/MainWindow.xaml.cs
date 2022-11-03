@@ -23,7 +23,8 @@ namespace RoverNav
     /// </summary>
     public partial class MainWindow : Window
     {
-        string data_string = string.Empty;
+        byte[] data_bytes = new byte[9];
+        byte[] buffer = new byte[1];
         string[] input_text = new string[8];
         int error_count = 0;
         public MainWindow()
@@ -70,13 +71,13 @@ namespace RoverNav
             for (int i = 0; i < input_text.Length; i++)
             {
                 char n;
-                if (i % 2 == 0)
+                if (i % 2 == 1)
                 {
-                    n = 'a';
+                    n = 'd';
                 }
                 else
                 {
-                    n = 'd';
+                    n = 'a';
                 }
                 if (int.TryParse(input_text[i], out value))
                 {
@@ -87,11 +88,11 @@ namespace RoverNav
                     }
                     if (n == 'a' && value <= 180 && value >= 0)
                     {
-                        data_string = data_string + (char)value;
+                        data_bytes[i] = (byte)(value);
                     }
                     else if (n == 'd' && value <= 250 && value >= 0)
                     {
-                        data_string = data_string + (char)value;
+                        data_bytes[i] = (byte)(value);
                     }
                     else
                     {
@@ -111,27 +112,20 @@ namespace RoverNav
         {
             for (int i = 0; i < input_text.Length; i++)
             {
-                input_text[0] = string.Empty;
-                input_text[1] = string.Empty;
-                input_text[2] = string.Empty;
-                input_text[3] = string.Empty;
-                input_text[4] = string.Empty;
-                input_text[5] = string.Empty;
-                input_text[6] = string.Empty;
-                input_text[7] = string.Empty;
+                input_text[i] = string.Empty;
             }
         }
         private void UploadButton_Click(object sender, RoutedEventArgs e)
         {
             CollectInput();
             ParseInputs(input_text);
-            data_string = data_string + (char)5;
+            data_bytes[data_bytes.Length - 1] = (byte)5;
 
             if (error_count == 0)
             {
                 if (COMPortSelector.IsConnected())
                 {
-                    COMPortSelector.port.Write(data_string);
+                    COMPortSelector.port.Write(data_bytes, 0, data_bytes.Length);
                     StatusLabel.Content = "Success!";
                     //clearData(input_text);
 
@@ -143,7 +137,10 @@ namespace RoverNav
             }
 
             error_count = 0;
-            data_string = string.Empty;
+            for(int i = 0; i < data_bytes.Length; i ++)
+            {
+                data_bytes[i] = (byte)0;
+            }
         }
     }
 }
