@@ -1,130 +1,127 @@
 #include<Rover.h>
 
-Rover::Rover(const int p_size)
-{
-	data_arr = new char[p_size];
-    *packet_size = p_size;
-
-    Init();
-}
-
-Rover::~Rover()
-{
-    delete[] data_arr;
-    delete &packet_size;
-    delete &IRinput;
-}
-
-void Rover::ServoInit(int a, int b)
-{
-    L_Servo.attach(a);
-    R_Servo.attach(b);
-}
-
 void Rover::ServoCmd(int degree)
 {
-    L_Servo.write(degree);
-    R_Servo.write(degree);
-}
-
-void Rover::Init()
-{
-    ServoCmd(90);
-    digitalWrite(R_Dir_A, HIGH);
-    digitalWrite(R_Dir_B, LOW);
-    digitalWrite(L_Dir_A, HIGH);
-    digitalWrite(L_Dir_B, LOW);
-    analogWrite(R_Throttle, 0);
-    analogWrite(L_Throttle, 0);
-
-    this->IRinput->enableIRIn();
+	L_Servo.write(degree);
+	R_Servo.write(degree);
 }
 
 void Rover::Turn(int degree)
 {
-    if (degree > 90)
-    {
-        ServoCmd(120);
-        analogWrite(R_Throttle, 162);
-        analogWrite(L_Throttle, 255);
-        delay(50 * (degree - 90));
-    }
-    else if (degree < 90)
-    {
-        ServoCmd(60);
-        analogWrite(R_Throttle, 255);
-        analogWrite(L_Throttle, 162);
-        delay(50 * (-1 * (degree - 90)));
-    }
-
-    ServoCmd(90);
-}
-
-void Rover::retreiveData()
-{
-    for (int i = 0; i < *packet_size; i++)
-    {
-        data_arr[i] = EEPROM.read(i);
-    }
-    if (data_arr[*packet_size - 1] == 5)
-    {
-        starter = true;
-    }
+	if (degree > 90)
+	{
+		ServoCmd(120);
+		analogWrite(R_Throttle, 162);
+		analogWrite(L_Throttle, 255);
+		delay(20 * (degree - 90));
+	}
+	else if (degree < 90)
+	{
+		ServoCmd(60);
+		analogWrite(R_Throttle, 255);
+		analogWrite(L_Throttle, 162);
+		delay(20 * ( - 1 * (degree - 90)));
+	}
+	ServoCmd(90);
 }
 
 void Rover::Cruise(int distance)
 {
-    analogWrite(R_Throttle, 255);
-    analogWrite(L_Throttle, 255);
-    delay(distance * 100);
-    analogWrite(R_Throttle, 100);
-    analogWrite(L_Throttle, 100);
-    delay(100);
+	analogWrite(R_Throttle, 255);
+	analogWrite(L_Throttle, 255);
+	delay(distance * 50);
+	analogWrite(R_Throttle, 100);
+	analogWrite(L_Throttle, 100);
+	delay(100);
 }
 
-void Rover::DataCheck()
+void Rover::Init()
 {
-    if (Serial.available() && starter == false)
-    {
-        String data = Serial.readString();
-        for (int i = 0; i < *packet_size; i++)
-        {
-            EEPROM.write(i, data.charAt(i));
-        }
-    }
-    if (IRinput->decode(&results) && starter)
-    {
-        IRon = true;
-    }
-    else if (IRinput->decode(&results))
-    {
-        this->IRinput->resume();
-    }
+	ServoCmd(90);
+	digitalWrite(R_Dir_A, HIGH);
+	digitalWrite(R_Dir_B, LOW);
+	digitalWrite(L_Dir_A, HIGH);
+	digitalWrite(L_Dir_B, LOW);
+	analogWrite(R_Throttle, 0);
+	analogWrite(L_Throttle, 0);
+
+	this->IRinput->enableIRIn();
 }
 
+void Rover::SerialToEEPROM(unsigned int packet_size)
+{
+	uint8_t holder[packet_size];
+	if (Serial.available())
+	{
+		int n = Serial.readBytes(holder, packet_size);
+		for (int i = 0; i < n; i++)
+		{
+			EEPROM.write(i, holder[i]);
+		}
+	}
+}
+
+void Rover::ReadEEPROM()
+{
+	for (int i = 0; i < packet_size; i++)
+	{
+		nav_data[i] = EEPROM.read(i);
+	}
+}
+
+void Rover::CheckIR()
+{
+	if (IRinput->decode(&results) && (uint8_t)nav_data[packet_size - 1] == 5)
+	{
+		this->IRon = true;
+	}
+	else if (IRinput->decode(&results))
+	{
+		this->IRinput->resume();
+	}
+}
 
 void Rover::ExecuteNav()
 {
-    retreiveData();
+	if (IRon == true && (uint8_t)nav_data[packet_size - 1] == 5)
+	{
+		for (int i = 0; i < packet_size - 1; i += 2)
+		{
+			Turn((uint8_t)nav_data[i]);
+			Cruise((uint8_t)nav_data[i + 1]);
+		}
+		analogWrite(R_Throttle, 0);
+		analogWrite(L_Throttle, 0);
+		EEPROM.write(packet_size - 1, 0);
+		nav_data[packet_size - 1] = 0;
+		this->IRon = false;
+	}
+}
 
-    if (starter && IRon)
-    {
-        for (int i = 0; i < *packet_size - 1; i += 2)
-        {
-            Turn(data_arr[i]);
-            Cruise(data_arr[i + 1]);
-        }
-        analogWrite(R_Throttle, 0);
-        analogWrite(L_Throttle, 0);
-        data_arr[*packet_size - 1] = 0;
-        EEPROM.write(*packet_size - 1, 0);
-        starter = false;
-        IRon = false;
-    }
+Rover::Rover(const int p_size)
+{
+	nav_data = new char[p_size];
+	this->packet_size = p_size;
+
+	Init();
+}
+
+Rover::~Rover()
+{
+	delete[] nav_data;
+	delete& IRinput;
+}
+
+void Rover::ServoInit(int a, int b)
+{
+	L_Servo.attach(a);
+	R_Servo.attach(b);
 }
 
 void Rover::Run()
 {
-    DataCheck();
-    ExecuteNav();
+	SerialToEEPROM(packet_size);
+	ReadEEPROM();
+	CheckIR();
+	ExecuteNav();
 }
